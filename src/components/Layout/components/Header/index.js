@@ -2,6 +2,7 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,14 +17,14 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResults([1]);
+            setSearchResults([]);
         }, 0);
     }, []);
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="Tictok" />
+                <img src={images.logo} alt="TikTok" />
                 <Tippy
                     interactive
                     visible={searchResults.length > 0}
@@ -59,7 +60,10 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
+                </div>
             </div>
         </header>
     );
