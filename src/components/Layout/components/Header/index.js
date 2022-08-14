@@ -2,6 +2,8 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 
 import Button from '~/components/Button';
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -96,7 +98,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="TikTok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
 
                 {/* Search */}
                 <Search />
