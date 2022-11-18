@@ -15,6 +15,7 @@ function Button({
     disabled = false,
     small = false,
     large = false,
+    light = false,
     children,
     className,
     leftIcon,
@@ -53,6 +54,7 @@ function Button({
         rounded,
         small,
         large,
+        light,
     });
     return (
         <Comp className={classes} {...props}>
@@ -72,6 +74,7 @@ Button.propTypes = {
     disabled: PropTypes.bool,
     small: PropTypes.bool,
     large: PropTypes.bool,
+    light: PropTypes.bool,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     leftIcon: PropTypes.node,

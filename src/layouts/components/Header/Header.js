@@ -22,10 +22,12 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import Menu from '~/components/Popper/Menu';
-import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import { InboxIcon, MessageIcon, PlusIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 
+import { ModalContext } from '~/components/ModalProvider';
+import { useContext } from 'react';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -57,10 +59,12 @@ const MENU_ITEMS = [
     },
 ];
 
-function Header() {
-    const currentUser = true;
-
+function Header({ onShow }) {
+    // const currentUser = true;
+    const currentUser = false;
     // Handle logic
+    const context = useContext(ModalContext);
+
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -107,6 +111,17 @@ function Header() {
 
                 <div className={cx('actions')}>
                     {currentUser ? (
+                        <Button light to={config.routes.upload}>
+                            <PlusIcon className={cx('upload-icon')} />
+                            Upload
+                        </Button>
+                    ) : (
+                        <Button light onClick={context.handleShowModal}>
+                            <PlusIcon className={cx('upload-icon')} />
+                            Upload
+                        </Button>
+                    )}
+                    {currentUser ? (
                         <>
                             <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
@@ -128,8 +143,9 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button text>Upload</Button>
-                            <Button primary>Log in</Button>
+                            <Button primary onClick={context.handleShowModal}>
+                                Log in
+                            </Button>
                         </>
                     )}
 

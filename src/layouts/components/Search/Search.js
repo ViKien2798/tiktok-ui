@@ -5,7 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 // import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
 import styles from './Search.module.scss';
 
@@ -67,10 +67,14 @@ function Search() {
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
+                            <div className={cx('text-result')}>
+                                <FontAwesomeIcon icon={faMagnifyingGlass} /> {searchValue}
+                            </div>
                             <h4 className={cx('search-title')}>Accounts</h4>
                             {searchResult.map((result) => (
                                 <AccountItem key={result.id} data={result} />
                             ))}
+                            <div className={cx('view-all')}>View all results for "{searchValue}"</div>
                         </PopperWrapper>
                     </div>
                 )}
